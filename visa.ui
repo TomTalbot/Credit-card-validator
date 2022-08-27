@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(54,54,54)</string>
   </property>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="visatextbox">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -49,7 +49,7 @@
     <string>Please input the numbers on the front of your VISA card:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="verifybutton1">
    <property name="geometry">
     <rect>
      <x>390</x>
