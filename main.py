@@ -3,8 +3,10 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QHBoxLayout, QMessageBox
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QIntValidator,QDoubleValidator,QFont
+import pyluhn
+from pyluhn import verify
 
-
+#LOLOLOL couldve just used the FL package and had this whole project done in like 5 lines of code
 
 
 class mainpage(QDialog):
@@ -34,19 +36,20 @@ class Visa(QDialog):
 
     def validate(self):
         cardlist = []
-        errortotal = 0
 
         #takes input from the line edit box
-        userinput = self.visatextbox.text()
+        userinput = self.visatextbox.text() #takes user input
         carduserinput = self.visatextbox.text()
         cardlist.append(carduserinput)
         print(cardlist)
+
+
 
         if len(userinput) != 16:
             message = QMessageBox()
             message.setWindowTitle("ERROR")
             message.setText("Visa cards contain 16 digits, try again.")
-            errortotal += 1
+
 
             x = message.exec_()
 
@@ -59,21 +62,23 @@ class Visa(QDialog):
 
             x = message.exec_()
 
-        if cardlist[0] != 4:
-            message = QMessageBox()
-            message.setWindowTitle("ERROR")
-            message.setText("Visa cards start with the digit 4")
-
-            x = message.exec_()
 
         else:
-            message = QMessageBox()
-            message.setWindowTitle("SUCCESS")
-            message.setText("Card Validated!.")
+            verification = verify(userinput) #utilises Pyluhn library
+            print(verification)
+            if verification == True:
+                message = QMessageBox() #creates message box instance
+                message.setWindowTitle("Success")
+                message.setText("This card is valid!")
 
+                x = message.exec_() #displays message box
 
+            else:
+                message = QMessageBox()
+                message.setWindowTitle("ERROR")
+                message.setText("This card is invalid!")
 
-
+                x = message.exec_()
 
 
 
@@ -81,9 +86,53 @@ class Mastercard(QDialog):
     def __init__(self):
         super(Mastercard,self).__init__()
         loadUi("mastercard.ui",self)
+        self.verifybutton2.clicked.connect(self.validate) #links button to validate function
+
+
+    def validate(self):
+        cardlist= []
+
+        #takes input from the line edit box
+        userinput = self.mastercardtextbox.text()
+        carduserinput = self.mastercardtextbox.text()
+        cardlist.append(carduserinput)
+        print(cardlist)
 
 
 
+        if len(userinput) != 16:
+            message = QMessageBox()
+            message.setWindowTitle("ERROR")
+            message.setText("Visa cards contain 16 digits, try again.")
+
+
+            x = message.exec_()
+
+
+        if userinput.isalpha()== True:
+            message = QMessageBox()
+            message.setWindowTitle("ERROR")
+            message.setText("This input contains letters")
+
+
+            x = message.exec_()
+
+
+        else:
+            verification = verify(userinput)
+            print(verification)
+            if verification == True:
+                message = QMessageBox()
+                message.setWindowTitle("Success")
+                message.setText("This card is valid!")
+
+                x = message.exec_()
+            else:
+                message = QMessageBox()
+                message.setWindowTitle("ERROR")
+                message.setText("This card is invalid!")
+
+                x = message.exec_()
 
 
 
