@@ -34,6 +34,7 @@ class Visa(QDialog):
 
     def validate(self):
         cardlist = []
+        errortotal = 0
 
         #takes input from the line edit box
         userinput = self.visatextbox.text()
@@ -45,6 +46,7 @@ class Visa(QDialog):
             message = QMessageBox()
             message.setWindowTitle("ERROR")
             message.setText("Visa cards contain 16 digits, try again.")
+            errortotal += 1
 
             x = message.exec_()
 
@@ -53,6 +55,7 @@ class Visa(QDialog):
             message = QMessageBox()
             message.setWindowTitle("ERROR")
             message.setText("This input contains letters")
+
 
             x = message.exec_()
 
