@@ -54,10 +54,10 @@ class Visa(QDialog):
             x = message.exec_()
 
 
-        if userinput.isalpha()== True:
+        if userinput.isnumeric()== False:
             message = QMessageBox()
             message.setWindowTitle("ERROR")
-            message.setText("This input contains letters")
+            message.setText("This input contains letters or symbols")
 
 
             x = message.exec_()
@@ -103,7 +103,7 @@ class Mastercard(QDialog):
         if len(userinput) != 16:
             message = QMessageBox()
             message.setWindowTitle("ERROR")
-            message.setText("Visa cards contain 16 digits, try again.")
+            message.setText("Mastercard cards contain 16 digits, try again.")
 
 
             x = message.exec_()
@@ -112,7 +112,7 @@ class Mastercard(QDialog):
         if userinput.isalpha()== True:
             message = QMessageBox()
             message.setWindowTitle("ERROR")
-            message.setText("This input contains letters")
+            message.setText("This input contains letters or symbols")
 
 
             x = message.exec_()
