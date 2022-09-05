@@ -62,6 +62,13 @@ class Visa(QDialog):
 
             x = message.exec_()
 
+        if userinput == "":
+            message = QMessageBox()
+            message.setWindowTitle("ERROR")
+            message.setText("This input is blank")
+
+            x = message.exec_()
+
 
         else:
             verification = verify(userinput) #utilises Pyluhn library
@@ -109,11 +116,18 @@ class Mastercard(QDialog):
             x = message.exec_()
 
 
-        if userinput.isalpha()== True:
+        if userinput.isnumeric()== False:
             message = QMessageBox()
             message.setWindowTitle("ERROR")
             message.setText("This input contains letters or symbols")
 
+
+            x = message.exec_()
+
+        if userinput == "":
+            message = QMessageBox()
+            message.setWindowTitle("ERROR")
+            message.setText("This input is blank")
 
             x = message.exec_()
 
