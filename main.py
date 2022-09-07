@@ -32,6 +32,11 @@ class Visa(QDialog):
         super(Visa,self).__init__()
         loadUi("visa.ui",self)
         self.verifybutton1.clicked.connect(self.validate)
+        self.backButton.clicked.connect(self.back)
+
+
+    def back(self):
+        widget.setCurrentIndex(widget.currentIndex()-1)
 
 
     def validate(self):
@@ -94,6 +99,11 @@ class Mastercard(QDialog):
         super(Mastercard,self).__init__()
         loadUi("mastercard.ui",self)
         self.verifybutton2.clicked.connect(self.validate) #links button to validate function
+        self.backButton.clicked.connect(self.back)
+
+
+    def back(self):
+        widget.setCurrentIndex(widget.currentIndex()-2)
 
 
     def validate(self):
